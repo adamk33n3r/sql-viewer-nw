@@ -1,0 +1,130 @@
+html
+    border-top-left-radius: 32px
+    border-top-right-radius: 32px
+    border-bottom-left-radius: 24px
+    border-bottom-right-radius: 24px
+
+body
+    // overflow: hidden
+    background-color: #222
+    padding-top: 70px
+
+@media (min-width: 1600px)
+    .container
+        width: 1570px
+
+#ui-view
+    margin-bottom: 20px
+    height: calc(100% - 36px)
+
+#connect
+    margin-top: 25px
+
+#by
+    width: initial
+    display: inline
+
+.row
+    margin-bottom: 10px
+
+table#result
+    td > div, th > div
+        overflow: hidden
+        max-width: 300px
+        max-height: 65px
+
+.navbar
+    border-top-left-radius: 25px
+    border-top-right-radius: 25px
+    -webkit-app-region: drag
+    -webkit-user-select: none
+    .container
+        .navbar-brand
+            -webkit-app-region: drag
+            -webkit-user-select: none
+        *
+            -webkit-app-region: no-drag
+    .btn
+        margin-top: 7.5px
+
+
+
+
+/* Stats */
+
+.stats
+    position: fixed
+    bottom: 0
+    width: 100%
+    text-align: center
+    color: #777
+    font-size: 13px
+
+    background-color: #f8f8f8
+    border: 1px solid #e7e7e7
+    border-bottom-left-radius: 25px
+    border-bottom-right-radius: 25px
+
+.stats span.val
+    font-weight: bold
+    color: #999
+    margin-right: 10px
+
+
+
+
+/* Explore */
+
+.piece
+    width: 100px
+    height: 100px
+    background: red
+    display: table-cell
+    border-radius: 5px
+
+.dropzone
+    width: 108px
+    height: 108px
+    background: #999
+    padding: 2px
+    border: 2px dashed #555
+    border-radius: 5px
+    display: inline-block
+
+.dropzone > .inner
+    display: block
+    text-align: center
+    // padding-top: 38%
+    // position: absolute
+    position: relative
+    padding-top: 40px
+    // padding-left: 17px
+    margin-bottom: -60px
+
+.dropzone.hovered
+    background: #777
+
+.panel > .panel-body
+    overflow: auto
+    height: calc(100% - 45px)
+
+::-webkit-scrollbar
+    width: 20px
+    height: 20px
+
+::-webkit-scrollbar-track
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3)
+
+::-webkit-scrollbar-thumb
+    background: #aaa
+    border: 1px solid black
+    border-radius: 5px
+    box-shadow: white 0px 0px 10px inset
+    transition: background 1s linear
+    &:hover
+        background: #ccc
+
+// ::-webkit-resizer
+//     background: #aaa
+//     &:hover
+//         cursor: move

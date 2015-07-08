@@ -1,0 +1,24 @@
+.panel.panel-default
+  .panel-heading
+    | Connect
+  .panel-body
+    .row
+      .col-xs-6.form-group
+        label(for = 'host') Host:
+        input#host.form-control
+      .col-xs-6.form-group
+        label(for = 'port') Port:
+        input#port.form-control
+    .row
+      .col-xs-6.form-group
+        label(for = 'username') Username:
+        input#username.form-control
+      .col-xs-6.form-group
+        label(for = 'password') Password:
+        input#password.form-control
+    .row
+      .col-xs-6.form-group
+        label.control-label(for = 'db') Database:
+        input#db.form-control
+      .col-xs-6
+        button#connect.btn.btn-primary.pull-right Connect

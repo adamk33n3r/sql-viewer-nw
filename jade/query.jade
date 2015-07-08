@@ -1,0 +1,29 @@
+.panel.panel-default
+  .panel-heading
+    | Query
+  .panel-body
+    .row
+      .col-xs-6
+        textarea#query.form-control(ng-model="queryString")
+        br
+        button#execute.btn.btn-primary(ng-click="query(queryString)") Execute
+    .row
+      .col-xs-6
+        label(for="paginate") Paginate
+        input#paginate(type="checkbox", ng-model="paginate")
+        label(for="by") by
+        select#by.form-control(type="dropdown", ng-model="by", convert-to-number)
+          option(value="10") 10
+          option(value="50") 50
+          option(value="100") 100
+        select#page.form-control(type="dropdown", ng-model="page", convert-to-number)
+          option(value="1") 1
+          option(value="2") 2
+          option(value="3") 3
+    div(style="overflow-x: auto")
+      p(ng-hide="result.length > 0") No result yet
+      table#result.table.table-bordered.table-hover.table-condensed(ng-if="result.length > 0")
+        thead: tr
+          th(ng-repeat="(header,_) in result[0]"): div {{ header.split('_').join(' ') }}
+        tbody: tr(ng-repeat="row in result")
+          td(ng-repeat="item in row"): div {{ item }}

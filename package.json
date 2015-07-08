@@ -1,0 +1,39 @@
+{
+  "name": "sql-query-vis",
+  "version": "1.0.0",
+  "description": "SQL Query Visualizer. Easily view your quieries",
+  "main": "html/index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "window": {
+    "title": "SQL Query Visualizer",
+    "width": 1000,
+    "height": 600,
+    "position": "mouse",
+    "toolbar": false,
+    "frame": false,
+    "transparent": true
+  },
+  "license": "GPL",
+  "dependencies": {
+    "node-promise": "^0.5.12",
+    "nw": "^0.12.2",
+    "pg": "^4.4.0",
+    "pretty-bytes": "^2.0.1",
+    "promised-io": "^0.3.5"
+  },
+  "devDependencies": {
+    "coffee-script": "^1.9.3",
+    "del": "^1.2.0",
+    "gulp": "^3.9.0",
+    "gulp-coffee": "^2.3.1",
+    "gulp-coffeeify": "^0.1.8",
+    "gulp-jade": "^1.0.1",
+    "gulp-plumber": "^1.0.1",
+    "gulp-stylus": "^2.0.5",
+    "run-sequence": "^1.1.1",
+    "stylus": "^0.51.1"
+  }
+}

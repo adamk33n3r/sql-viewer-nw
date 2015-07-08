@@ -1,0 +1,48 @@
+
+<div class="panel panel-default">
+  <div class="panel-heading">Query</div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-xs-6">
+        <textarea id="query" ng-model="queryString" class="form-control"></textarea><br/>
+        <button id="execute" ng-click="query(queryString)" class="btn btn-primary">Execute</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-6">
+        <label for="paginate">Paginate</label>
+        <input id="paginate" type="checkbox" ng-model="paginate"/>
+        <label for="by">by</label>
+        <select id="by" type="dropdown" ng-model="by" convert-to-number="convert-to-number" class="form-control">
+          <option value="10">10</option>
+          <option value="50">50</option>
+          <option value="100">100</option>
+        </select>
+        <select id="page" type="dropdown" ng-model="page" convert-to-number="convert-to-number" class="form-control">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+        </select>
+      </div>
+    </div>
+    <div style="overflow-x: auto">
+      <p ng-hide="result.length &gt; 0">No result yet</p>
+      <table id="result" ng-if="result.length &gt; 0" class="table table-bordered table-hover table-condensed">
+        <thead>
+          <tr>
+            <th ng-repeat="(header,_) in result[0]">
+              <div>{{ header.split('_').join(' ') }}</div>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="row in result">
+            <td ng-repeat="item in row">
+              <div>{{ item }}</div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

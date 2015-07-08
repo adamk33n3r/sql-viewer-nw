@@ -1,0 +1,12 @@
+#!/bin/bash
+
+if [[ -z $1 ]]; then
+    echo "Must provide endpoint name";
+    exit -1;
+fi
+
+IFS='%'
+echo -e "angular.module 'myApp'\n.controller '${1^}Controller', ->\n  " > ./coffee/$1.controller.coffee
+touch ./jade/$1.jade
+sed -i.bak 's/\(.*\)\(\/\/- controllers:end\)/\1script(src="#{path}\/js\/'$1'.controller.js")\n\1\2/' ./jade/index.jade
+sed -i.bak "s/\(.*\)\(#- states:end\)/\1$stateProvider.state '$1'\n\1  url: '\/$1'\n\1  templateUrl: \"#{cwd}\/html\/$1.html\"\n\1  controller: '${1^}Controller'\n\1\2/" ./coffee/main.coffee

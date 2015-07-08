@@ -1,0 +1,60 @@
+
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <base href="/"/>
+    <title>SQL Query Visualizer</title>
+    <link rel="stylesheet" href="/home/akeenan/projects/sql-viewer-nw/lib/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/home/akeenan/projects/sql-viewer-nw/css/styles.css"/>
+    <script src="/home/akeenan/projects/sql-viewer-nw/lib/jquery/dist/jquery.min.js"></script>
+    <script src="/home/akeenan/projects/sql-viewer-nw/lib/jquery-ui/jquery-ui.min.js"></script>
+    <script src="/home/akeenan/projects/sql-viewer-nw/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/home/akeenan/projects/sql-viewer-nw/lib/angular/angular.js"></script>
+    <script src="/home/akeenan/projects/sql-viewer-nw/lib/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="/home/akeenan/projects/sql-viewer-nw/lib/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script type="text/javascript">
+      var net = require('net');
+      var settings = require("/home/akeenan/projects/sql-viewer-nw/settings.json");
+      var gui = require('nw.gui');
+      // Listen for reload
+      if (gui.App.argv && gui.App.argv[0] == '--debug') {
+        console.log("debug is on");
+        var client = net.connect(9292);
+        client.on('data', function (data) {
+          if (data.toString() == 'reload')
+            window.location.reload(true);
+        });
+      }
+      window.requireNode = require;
+      
+    </script>
+    <script src="/home/akeenan/projects/sql-viewer-nw/js/main.js"></script>
+    <script src="/home/akeenan/projects/sql-viewer-nw/js/query.service.js"></script>
+    <script src="/home/akeenan/projects/sql-viewer-nw/js/connect.controller.js"></script>
+    <script src="/home/akeenan/projects/sql-viewer-nw/js/query.controller.js"></script>
+    <script src="/home/akeenan/projects/sql-viewer-nw/js/explore.controller.js"></script>
+  </head>
+  <body ng-app="myApp" ng-controller="AppController as App">
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header navbar-brand">SQLViewer</div>
+        <ul class="nav navbar-nav">
+          <li ui-sref-active="active"><a ui-sref="home">Home</a></li>
+          <li ui-sref-active="active"><a ui-sref="connect">Setup Connection</a></li>
+          <li ui-sref-active="active"><a ui-sref="explore">Explore</a></li>
+          <li ui-sref-active="active"><a ui-sref="query">Execute Query</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="btn-group">
+            <button class="btn btn-default glyphicon glyphicon-cog"></button>
+            <button class="btn btn-default glyphicon glyphicon-minus"></button>
+            <button ng-click="App.close()" class="btn btn-default glyphicon glyphicon-remove"></button>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div id="ui-view" ui-view="" class="container"></div>
+    <div class="stats"><span id="cpus">Number of CPU cores:&nbsp;<span class="val">{{ cpus.length }}</span></span><span id="usage">CPU usage:&nbsp;<span class="val">{{ usages.join('%, ') }}%</span></span><span id="memory">Free memory:&nbsp;<span class="val">{{ memoryUsage }}</span></span></div>
+  </body>
+</html>

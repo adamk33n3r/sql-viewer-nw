@@ -1,0 +1,38 @@
+
+<div class="panel panel-default">
+  <div class="panel-heading">Explore</div>
+  <div class="panel-body">
+    <div class="well">
+      <ul id="databases">
+        <li ng-repeat="db in databases"><a ui-sref="explore.db({db: '{{ db }}'})">{{ db }}</a></li>
+      </ul>
+    </div>
+    <div id="board">
+      <div id="pieces" class="well">
+        <div class="piece db">DB</div>
+        <div class="piece schema">Schema</div>
+        <div class="piece join">Join</div>
+      </div>
+      <div id="query" class="well">
+        <div class="dropzone">
+          <div class="inner">Drop Zone</div>
+        </div>
+        <div class="dropzone">
+          <div class="inner">Drop Zone</div>
+        </div>
+        <div class="dropzone">
+          <div class="inner">Drop Zone</div>
+        </div>
+        <div class="dropzone">
+          <div class="inner">Drop Zone</div>
+        </div>
+        <div class="dropzone">
+          <div class="inner">Drop Zone</div>
+        </div>
+        <div class="dropzone">
+          <div class="inner">Drop Zone</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

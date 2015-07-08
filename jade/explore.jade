@@ -1,0 +1,25 @@
+.panel.panel-default
+  .panel-heading
+    | Explore
+  .panel-body
+    .well
+      ul#databases
+        li(ng-repeat="db in databases"): a(ui-sref="explore.db({db: '{{ db }}'})") {{ db }}
+    #board
+      #pieces.well
+        .piece.db DB
+        .piece.schema Schema
+        .piece.join Join
+      #query.well
+        .dropzone
+          .inner Drop Zone
+        .dropzone
+          .inner Drop Zone
+        .dropzone
+          .inner Drop Zone
+        .dropzone
+          .inner Drop Zone
+        .dropzone
+          .inner Drop Zone
+        .dropzone
+          .inner Drop Zone

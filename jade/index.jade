@@ -1,0 +1,74 @@
+- var path=process.cwd()
+html
+  head
+    meta(charset="utf-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1")
+
+    base(href='/')
+    title SQL Query Visualizer
+
+    link(rel="stylesheet", href="#{path}/lib/bootstrap/dist/css/bootstrap.min.css")
+    link(rel="stylesheet", href="#{path}/css/styles.css")
+
+    script(src="#{path}/lib/jquery/dist/jquery.min.js")
+    script(src="#{path}/lib/jquery-ui/jquery-ui.min.js")
+    script(src="#{path}/lib/bootstrap/dist/js/bootstrap.min.js")
+
+    script(src="#{path}/lib/angular/angular.js")
+    script(src="#{path}/lib/angular-ui-router/release/angular-ui-router.min.js")
+    script(src="#{path}/lib/angular-bootstrap/ui-bootstrap-tpls.min.js")
+
+    script(type="text/javascript").
+      var net = require('net');
+      var settings = require("#{path}/settings.json");
+      var gui = require('nw.gui');
+      // Listen for reload
+      if (gui.App.argv && gui.App.argv[0] == '--debug') {
+        console.log("debug is on");
+        var client = net.connect(9292);
+        client.on('data', function (data) {
+          if (data.toString() == 'reload')
+            window.location.reload(true);
+        });
+      }
+      window.requireNode = require;
+
+    //- App
+    script(src="#{path}/js/main.js")
+
+    //- Services
+    script(src="#{path}/js/query.service.js")
+
+    //- Controllers
+    script(src="#{path}/js/connect.controller.js")
+    script(src="#{path}/js/query.controller.js")
+    script(src="#{path}/js/explore.controller.js")
+    //- controllers:end
+
+  body(ng-app="myApp", ng-controller="AppController as App")
+    nav.navbar.navbar-default.navbar-fixed-top
+      .container
+        .navbar-header.navbar-brand SQLViewer
+        ul.nav.navbar-nav
+          li(ui-sref-active="active"): a(ui-sref="home") Home
+          li(ui-sref-active="active"): a(ui-sref="connect") Setup Connection
+          li(ui-sref-active="active"): a(ui-sref="explore") Explore
+          li(ui-sref-active="active"): a(ui-sref="query") Execute Query
+        ul.nav.navbar-nav.navbar-right
+          li.btn-group
+            button.btn.btn-default.glyphicon.glyphicon-cog
+            button.btn.btn-default.glyphicon.glyphicon-minus
+            button.btn.btn-default.glyphicon.glyphicon-remove(ng-click='App.close()')
+    div#ui-view.container(ui-view='')
+
+    .stats
+      span#cpus
+        | Number of CPU cores:&nbsp;
+        span.val {{ cpus.length }}
+      span#usage
+        | CPU usage:&nbsp;
+        span.val {{ usages.join('%, ') }}%
+      span#memory
+        | Free memory:&nbsp;
+        span.val {{ memoryUsage }}
+
